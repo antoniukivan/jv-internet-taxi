@@ -1,10 +1,11 @@
-package mate.academy.dao;
+package mate.academy.service;
 
 import mate.academy.model.Manufacturer;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface ManufacturerDao {
+public interface ManufacturerService {
     Manufacturer create(Manufacturer manufacturer);
 
     Optional<Manufacturer> get(Long id);
