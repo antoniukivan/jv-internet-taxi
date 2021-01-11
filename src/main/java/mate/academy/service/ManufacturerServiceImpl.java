@@ -1,12 +1,10 @@
 package mate.academy.service;
 
+import java.util.List;
 import mate.academy.dao.ManufacturerDao;
 import mate.academy.lib.Inject;
 import mate.academy.lib.Service;
 import mate.academy.model.Manufacturer;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ManufacturerServiceImpl implements ManufacturerService {
@@ -19,22 +17,22 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
-    public Optional<Manufacturer> get(Long id) {
-        return Optional.empty();
+    public Manufacturer get(Long id) {
+        return manufacturerDao.get(id).orElseThrow();
     }
 
     @Override
     public List<Manufacturer> getAll() {
-        return null;
+        return manufacturerDao.getAll();
     }
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        return null;
+        return manufacturerDao.update(manufacturer);
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        return manufacturerDao.delete(id);
     }
 }

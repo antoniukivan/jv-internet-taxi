@@ -1,14 +1,12 @@
 package mate.academy.service;
 
-import mate.academy.model.Manufacturer;
-
 import java.util.List;
-import java.util.Optional;
+import mate.academy.model.Manufacturer;
 
 public interface ManufacturerService {
     Manufacturer create(Manufacturer manufacturer);
 
-    Optional<Manufacturer> get(Long id);
+    Manufacturer get(Long id);
 
     List<Manufacturer> getAll();
 
