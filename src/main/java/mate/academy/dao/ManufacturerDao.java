@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class ManufacturerDao {
     public Manufacturer create(Manufacturer manufacturer) {
-
+        
     }
 
     public Optional<Manufacturer> get(Long id) {
@@ -15,6 +15,14 @@ public class ManufacturerDao {
     }
 
     public List<Manufacturer> getAll() {
+
+    }
+
+    public Manufacturer update(Manufacturer manufacturer) {
+
+    }
+
+    public boolean delete(Long id) {
 
     }
 }
