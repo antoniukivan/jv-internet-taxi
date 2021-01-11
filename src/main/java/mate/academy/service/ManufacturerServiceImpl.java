@@ -1,11 +1,11 @@
-package mate.academy.dao;
+package mate.academy.service;
 
 import mate.academy.model.Manufacturer;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ManufacturerDaoImpl implements ManufacturerDao {
+public class ManufacturerServiceImpl implements ManufacturerService {
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
         return null;
