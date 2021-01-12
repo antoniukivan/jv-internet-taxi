@@ -26,4 +26,8 @@ public class Car {
     public void setDrivers(List<Driver> drivers) {
         this.drivers = drivers;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
