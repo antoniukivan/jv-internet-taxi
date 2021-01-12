@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import mate.academy.db.Storage;
+import mate.academy.lib.Dao;
 import mate.academy.model.Car;
 
+@Dao
 public class CarDaoImpl implements CarDao {
     @Override
     public Car create(Car car) {
