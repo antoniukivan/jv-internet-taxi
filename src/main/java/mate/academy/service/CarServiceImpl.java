@@ -1,15 +1,14 @@
 package mate.academy.service;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import mate.academy.dao.CarDao;
 import mate.academy.dao.DriverDao;
 import mate.academy.lib.Inject;
 import mate.academy.lib.Service;
 import mate.academy.model.Car;
 import mate.academy.model.Driver;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class CarServiceImpl implements CarService {
