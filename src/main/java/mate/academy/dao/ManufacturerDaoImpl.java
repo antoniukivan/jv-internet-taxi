@@ -3,6 +3,7 @@ package mate.academy.dao;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
 import mate.academy.db.Storage;
 import mate.academy.lib.Dao;
 import mate.academy.model.Manufacturer;
@@ -11,11 +12,8 @@ import mate.academy.model.Manufacturer;
 public class ManufacturerDaoImpl implements ManufacturerDao {
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
-        if (manufacturer != null) {
-            Storage.addManufacturer(manufacturer);
-        }
-        return manufacturer == null ? null
-                : Storage.manufacturers.get(Storage.manufacturers.size() - 1);
+        Storage.addManufacturer(manufacturer);
+        return Storage.manufacturers.get(Storage.manufacturers.size() - 1);
     }
 
     @Override
@@ -40,7 +38,6 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public boolean delete(Long id) {
-        return Storage.manufacturers.remove(get(id).orElseThrow(() ->
-                new RuntimeException("Can't find Manufacturer with this id: " + id)));
+        return Storage.manufacturers.removeIf(x -> Objects.equals(x.getId(), id));
     }
 }
