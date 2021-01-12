@@ -15,6 +15,22 @@ public class Car {
         this.drivers = new ArrayList<>();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+
     public void setModel(String model) {
         this.model = model;
     }

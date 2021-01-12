@@ -1,29 +1,37 @@
 package mate.academy.dao;
 
+import mate.academy.db.Storage;
 import mate.academy.model.Car;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class CarDaoImpl implements CarDao {
     @Override
     public Car create(Car car) {
-        return null;
+        Storage.addCar(car);
+        return Storage.cars.get(Storage.cars.size() - 1);
     }
 
     @Override
     public Optional<Car> get(Long id) {
-        return Optional.empty();
+        return Storage.cars.stream()
+                .filter(car -> Objects.equals(car.getId(), id))
+                .findAny();
     }
 
     @Override
     public List<Car> getAll() {
-        return null;
+        return Storage.cars;
     }
 
     @Override
     public Car update(Car car) {
-        return null;
+        Car oldValue = get(car.getId()).orElseThrow();
+        Storage.cars.remove(oldValue);
+        Storage.cars.add(car);
+        return oldValue;
     }
 
     @Override
