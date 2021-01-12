@@ -2,7 +2,6 @@ package mate.academy.dao;
 
 import mate.academy.db.Storage;
 import mate.academy.model.Car;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -36,6 +35,6 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        return Storage.cars.removeIf(car -> Objects.equals(id, car.getId()));
     }
 }
