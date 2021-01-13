@@ -1,5 +1,6 @@
-package mate.academy.dao;
+package mate.academy.dao.jdbc;
 
+import mate.academy.dao.ManufacturerDao;
 import mate.academy.model.Manufacturer;
 
 import java.util.List;
