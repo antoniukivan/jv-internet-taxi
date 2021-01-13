@@ -2,9 +2,7 @@ package mate.academy.service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import mate.academy.dao.CarDao;
-import mate.academy.dao.DriverDao;
 import mate.academy.lib.Inject;
 import mate.academy.lib.Service;
 import mate.academy.model.Car;
@@ -14,8 +12,6 @@ import mate.academy.model.Driver;
 public class CarServiceImpl implements CarService {
     @Inject
     private CarDao carDao;
-    @Inject
-    private DriverDao driverDao;
 
     @Override
     public Car create(Car car) {
@@ -54,8 +50,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAllByDriver(Long driverId) {
-        return carDao.getAll().stream()
-                .filter(car -> car.getDrivers().contains(driverDao.get(driverId).orElseThrow()))
-                .collect(Collectors.toList());
+        return carDao.getAllByDriver(driverId);
     }
 }
