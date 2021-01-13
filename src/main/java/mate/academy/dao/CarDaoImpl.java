@@ -12,7 +12,7 @@ public class CarDaoImpl implements CarDao {
     @Override
     public Car create(Car car) {
         Storage.addCar(car);
-        return Storage.cars.get(Storage.cars.size() - 1);
+        return car;
     }
 
     @Override

@@ -12,7 +12,7 @@ public class DriverDaoImpl implements DriverDao {
     @Override
     public Driver create(Driver driver) {
         Storage.addDriver(driver);
-        return Storage.drivers.get(Storage.drivers.size() - 1);
+        return driver;
     }
 
     @Override
