@@ -1,7 +1,6 @@
 package mate.academy.service;
 
 import java.util.List;
-import java.util.Objects;
 import mate.academy.dao.CarDao;
 import mate.academy.lib.Inject;
 import mate.academy.lib.Service;
@@ -41,11 +40,13 @@ public class CarServiceImpl implements CarService {
     @Override
     public void addDriverToCar(Driver driver, Car car) {
         car.getDrivers().add(driver);
+        carDao.update(car);
     }
 
     @Override
     public void removeDriverFromCar(Driver driver, Car car) {
-        car.getDrivers().removeIf(x -> Objects.equals(driver, x));
+        car.getDrivers().remove(driver);
+        carDao.update(car);
     }
 
     @Override

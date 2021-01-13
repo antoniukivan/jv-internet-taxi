@@ -29,10 +29,10 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        Manufacturer oldValue = get(manufacturer.getId()).orElseThrow();
+        Manufacturer oldValue = get(manufacturer.getId()).get();
         Storage.manufacturers.remove(oldValue);
         Storage.manufacturers.add(manufacturer);
-        return oldValue;
+        return manufacturer;
     }
 
     @Override

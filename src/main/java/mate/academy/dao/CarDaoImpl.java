@@ -6,14 +6,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import mate.academy.db.Storage;
 import mate.academy.lib.Dao;
-import mate.academy.lib.Inject;
 import mate.academy.model.Car;
 
 @Dao
 public class CarDaoImpl implements CarDao {
-    @Inject
-    private DriverDao driverDao;
-
     @Override
     public Car create(Car car) {
         Storage.addCar(car);
@@ -34,10 +30,10 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public Car update(Car car) {
-        Car oldValue = get(car.getId()).orElseThrow();
+        Car oldValue = get(car.getId()).get();
         Storage.cars.remove(oldValue);
         Storage.cars.add(car);
-        return oldValue;
+        return car;
     }
 
     @Override
@@ -48,7 +44,8 @@ public class CarDaoImpl implements CarDao {
     @Override
     public List<Car> getAllByDriver(Long driverId) {
         return getAll().stream()
-                .filter(car -> car.getDrivers().contains(driverDao.get(driverId).orElseThrow()))
+                .filter(car -> car.getDrivers().stream()
+                        .anyMatch(driver -> Objects.equals(driver.getId(), driverId)))
                 .collect(Collectors.toList());
     }
 }

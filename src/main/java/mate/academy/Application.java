@@ -66,10 +66,11 @@ public class Application {
         System.out.println(carService.get(3L));
         System.out.println();
         Car hondaAccord = new Car("Accord", honda);
+        hondaAccord.setId(2L);
         carService.addDriverToCar(john, hondaAccord);
         carService.addDriverToCar(oleg, hondaAccord);
         carService.removeDriverFromCar(john, hondaAccord);
-        hondaAccord.setId(2L);
+        System.out.println(hondaAccord);
         carService.update(hondaAccord);
         carService.delete(3L);
         carService.getAll().forEach(System.out::println);
