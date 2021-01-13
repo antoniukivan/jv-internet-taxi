@@ -3,7 +3,6 @@ package mate.academy.dao;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 import mate.academy.db.Storage;
 import mate.academy.lib.Dao;
 import mate.academy.model.Manufacturer;
@@ -30,10 +29,10 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        Manufacturer oldValue = get(manufacturer.getId()).orElseThrow();
+        Manufacturer oldValue = get(manufacturer.getId()).get();
         Storage.manufacturers.remove(oldValue);
         Storage.manufacturers.add(manufacturer);
-        return oldValue;
+        return manufacturer;
     }
 
     @Override
