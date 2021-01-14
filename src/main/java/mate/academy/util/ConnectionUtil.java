@@ -1,5 +1,7 @@
 package mate.academy.util;
 
+import mate.academy.exception.DataProcessingException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,11 +21,11 @@ public class ConnectionUtil {
         dbProperties.put("user", "root");
         dbProperties.put("password", "51221");
 
-        String url = "jdbc:mysql://localhost:3306/internet_taxi?serverTimeZone=UTC";
+        String url = "jdbc:mysql://localhost:3306/internet_taxi?serverTimezone=UTC";
         try {
             return DriverManager.getConnection(url, dbProperties);
         } catch (SQLException e) {
-            throw new RuntimeException("Can't establish the connection to db", e);
+            throw new DataProcessingException("Can't establish the connection to db", e);
         }
     }
 }

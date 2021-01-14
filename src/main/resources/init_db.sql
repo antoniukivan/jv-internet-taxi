@@ -5,6 +5,3 @@ CREATE TABLE `internet_taxi`.`manufacturers` (
   `manufacturer_country` VARCHAR(225) NOT NULL,
   `manufacturer_deleted` VARCHAR(225) NOT NULL DEFAULT 'FALSE',
   PRIMARY KEY (`manufacturer_id`));
-INSERT INTO `internet_taxi`.`manufacturers` (`manufacturer_name`, `manufacturer_country`) VALUES ('Tesla', 'USA');
-INSERT INTO `internet_taxi`.`manufacturers` (`manufacturer_name`, `manufacturer_country`) VALUES ('Toyota', 'Japan');
-INSERT INTO `internet_taxi`.`manufacturers` (`manufacturer_name`, `manufacturer_country`) VALUES ('Ford', 'USA');
