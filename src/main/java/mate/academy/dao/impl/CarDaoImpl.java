@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import mate.academy.dao.CarDao;
 import mate.academy.db.Storage;
 import mate.academy.lib.Dao;
@@ -32,7 +31,7 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public Car update(Car car) {
-        Car oldValue = get(car.getId()).get();
+        Car oldValue = get(car.getId()).orElseThrow();
         Storage.cars.remove(oldValue);
         Storage.cars.add(car);
         return car;

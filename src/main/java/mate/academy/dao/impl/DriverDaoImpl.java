@@ -3,7 +3,6 @@ package mate.academy.dao.impl;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 import mate.academy.dao.DriverDao;
 import mate.academy.db.Storage;
 import mate.academy.lib.Dao;
@@ -31,7 +30,7 @@ public class DriverDaoImpl implements DriverDao {
 
     @Override
     public Driver update(Driver driver) {
-        Driver oldValue = get(driver.getId()).get();
+        Driver oldValue = get(driver.getId()).orElseThrow();
         Storage.drivers.remove(oldValue);
         Storage.drivers.add(driver);
         return driver;
