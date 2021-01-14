@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import mate.academy.dao.ManufacturerDao;
 import mate.academy.exception.DataProcessingException;
 import mate.academy.lib.Dao;
@@ -43,7 +42,7 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
         String query = "SELECT * FROM manufacturers WHERE (manufacturer_id = ?) "
                 + "AND (manufacturer_deleted = 'FALSE')";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null && resultSet.next()) {
@@ -60,7 +59,7 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
         String query = "SELECT * FROM manufacturers WHERE manufacturer_deleted = 'FALSE'";
         List<Manufacturer> manufacturers = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet != null && resultSet.next()) {
                 manufacturers.add(getManufacturer(resultSet));
@@ -76,7 +75,7 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
         String query = "UPDATE manufacturers SET manufacturer_name = ?, manufacturer_country = ?"
                 + "WHERE (manufacturer_id = ?) AND (manufacturer_deleted = 'FALSE')";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, manufacturer.getName());
             preparedStatement.setString(2, manufacturer.getCountry());
             preparedStatement.setLong(3, manufacturer.getId());
@@ -96,7 +95,7 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
                 + "WHERE manufacturer_id = ?";
         int updatedRows;
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);
             updatedRows = preparedStatement.executeUpdate();
         } catch (SQLException e) {
