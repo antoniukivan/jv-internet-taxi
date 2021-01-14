@@ -114,7 +114,7 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
             manufacturer = new Manufacturer(name, country);
             manufacturer.setId(manufacturerId);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't find manufacturer ", e);
+            throw new DataProcessingException("Can't find manufacturer", e);
         }
         return manufacturer;
     }
