@@ -31,7 +31,7 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public Car update(Car car) {
-        Car oldValue = get(car.getId()).orElseThrow();
+        Car oldValue = get(car.getId()).get();
         Storage.cars.remove(oldValue);
         Storage.cars.add(car);
         return car;

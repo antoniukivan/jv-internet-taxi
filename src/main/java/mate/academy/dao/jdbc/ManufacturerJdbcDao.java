@@ -20,14 +20,14 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
     public Manufacturer create(Manufacturer manufacturer) {
         String query = "INSERT INTO `manufacturers` (`manufacturer_name`, `manufacturer_country`) "
                 + "VALUES (?, ?)";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement preparedStatement
-                    = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement preparedStatement
+                        = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
             preparedStatement.setString(1, manufacturer.getName());
             preparedStatement.setString(2, manufacturer.getCountry());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if (resultSet != null && resultSet.next()) {
+            if (resultSet.next()) {
                 manufacturer.setId(resultSet.getObject("manufacturer_id", Long.class));
             }
         } catch (SQLException e) {
@@ -45,7 +45,7 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
                  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet != null && resultSet.next()) {
+            if (resultSet.next()) {
                 return Optional.of(getManufacturer(resultSet));
             }
         } catch (SQLException e) {
@@ -61,7 +61,7 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet != null && resultSet.next()) {
+            while (resultSet.next()) {
                 manufacturers.add(getManufacturer(resultSet));
             }
         } catch (SQLException e) {
@@ -79,14 +79,11 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
             preparedStatement.setString(1, manufacturer.getName());
             preparedStatement.setString(2, manufacturer.getCountry());
             preparedStatement.setLong(3, manufacturer.getId());
-            int updatedRows = preparedStatement.executeUpdate();
-            if (updatedRows > 0) {
-                return manufacturer;
-            }
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update manufacturer " + manufacturer, e);
         }
-        throw new DataProcessingException("Can't update manufacturer " + manufacturer);
+        return manufacturer;
     }
 
     @Override
