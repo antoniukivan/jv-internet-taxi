@@ -6,10 +6,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import mate.academy.dao.CarDao;
 import mate.academy.db.Storage;
-import mate.academy.lib.Dao;
 import mate.academy.model.Car;
 
-@Dao
 public class CarDaoImpl implements CarDao {
     @Override
     public Car create(Car car) {
