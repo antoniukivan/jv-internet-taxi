@@ -1,8 +1,9 @@
-package mate.academy.dao;
+package mate.academy.dao.impl;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import mate.academy.dao.DriverDao;
 import mate.academy.db.Storage;
 import mate.academy.lib.Dao;
 import mate.academy.model.Driver;

@@ -1,9 +1,10 @@
-package mate.academy.dao;
+package mate.academy.dao.impl;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import mate.academy.dao.CarDao;
 import mate.academy.db.Storage;
 import mate.academy.lib.Dao;
 import mate.academy.model.Car;
