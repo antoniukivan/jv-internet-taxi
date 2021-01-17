@@ -24,7 +24,10 @@ public class CarJdbcDao implements CarDao {
     public Car create(Car car) {
         String insertCar = "INSERT INTO `cars` (`manufacturer_id`, `car_model`) "
                 + "VALUES (?, ?)";
+        String insertDrivers = "INSERT INTO `cars_drivers` (`driver_id`, `car_id`) "
+                + "VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement insertDriversStatement =
              PreparedStatement insertStatement
                      = connection.prepareStatement(insertCar, Statement.RETURN_GENERATED_KEYS)) {
             insertStatement.setLong(1, car.getManufacturer().getId());
@@ -32,7 +35,7 @@ public class CarJdbcDao implements CarDao {
             insertStatement.executeUpdate();
             ResultSet resultSet = insertStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                car.setId(resultSet.getObject("car_id", Long.class));
+                car.setId(resultSet.getObject(1, Long.class));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't insert car to the DB "

@@ -70,7 +70,6 @@ public class Application {
         carService.addDriverToCar(john, hondaAccord);
         carService.addDriverToCar(oleg, hondaAccord);
         carService.removeDriverFromCar(john, hondaAccord);
-        System.out.println(hondaAccord);
         carService.update(hondaAccord);
         carService.delete(3L);
         carService.getAll().forEach(System.out::println);

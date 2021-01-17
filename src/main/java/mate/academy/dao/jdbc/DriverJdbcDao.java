@@ -28,7 +28,7 @@ public class DriverJdbcDao implements DriverDao {
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                driver.setId(resultSet.getObject("driver_id", Long.class));
+                driver.setId(resultSet.getObject(1, Long.class));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't insert driver to the DB "
