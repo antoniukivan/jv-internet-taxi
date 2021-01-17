@@ -18,17 +18,18 @@ import java.util.Optional;
 public class CarJdbcDao implements CarDao {
     @Override
     public Car create(Car car) {
-        String query = "INSERT INTO `cars` (`car`, `manufacturer_country`) "
+        String insertCar = "INSERT INTO `cars` (`manufacturer_if`, `car_model`) "
                 + "VALUES (?, ?)";
+        String selectManufacturer = "SELECT * FROM manufacturers WHERE manufacturer_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
              PreparedStatement preparedStatement
-                     = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
-            preparedStatement.setString(1, manufacturer.getName());
-            preparedStatement.setString(2, manufacturer.getCountry());
+                     = connection.prepareStatement(insertCar, Statement.RETURN_GENERATED_KEYS);) {
+            preparedStatement.setString(1, car.getName());
+            preparedStatement.setString(2, car.getCountry());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                manufacturer.setId(resultSet.getObject("manufacturer_id", Long.class));
+                car.setId(resultSet.getObject("manufacturer_id", Long.class));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't insert manufacturer to the DB "
