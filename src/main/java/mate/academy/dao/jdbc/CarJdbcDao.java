@@ -34,7 +34,7 @@ public class CarJdbcDao implements CarDao {
             }
             return car;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't insert car to the DB "
+            throw new DataProcessingException("Can't insert car to the DB"
                     + car, e);
         }
     }
@@ -173,15 +173,19 @@ public class CarJdbcDao implements CarDao {
 
     private Car getCar(ResultSet resultSet) throws SQLException {
         Long carId = resultSet.getObject("car_id", Long.class);
-        Long manufacturerId = resultSet.getObject("manufacturer_id", Long.class);
         String carModel = resultSet.getObject("car_model", String.class);
+        Car car = new Car(carModel, getManufacturer(resultSet));
+        car.setId(carId);
+        return car;
+    }
+
+    private Manufacturer getManufacturer(ResultSet resultSet) throws SQLException {
+        Long manufacturerId = resultSet.getObject("manufacturer_id", Long.class);
         String manufacturerName = resultSet.getObject("manufacturer_name", String.class);
         String manufacturerCountry = resultSet.getObject("manufacturer_country", String.class);
         Manufacturer manufacturer = new Manufacturer(manufacturerName, manufacturerCountry);
         manufacturer.setId(manufacturerId);
-        Car car = new Car(carModel, manufacturer);
-        car.setId(carId);
-        return car;
+        return manufacturer;
     }
 
     private List<Driver> getCarDrivers(ResultSet resultSet) throws SQLException {
