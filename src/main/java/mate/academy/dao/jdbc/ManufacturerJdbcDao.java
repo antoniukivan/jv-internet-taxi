@@ -22,7 +22,7 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
                 + "VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement
-                        = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
+                        = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, manufacturer.getName());
             preparedStatement.setString(2, manufacturer.getCountry());
             preparedStatement.executeUpdate();
@@ -39,8 +39,8 @@ public class ManufacturerJdbcDao implements ManufacturerDao {
 
     @Override
     public Optional<Manufacturer> get(Long id) {
-        String query = "SELECT * FROM manufacturers WHERE (manufacturer_id = ?) "
-                + "AND (manufacturer_deleted = 'FALSE')";
+        String query = "SELECT * FROM manufacturers "
+                + "WHERE manufacturer_id = ? AND manufacturer_deleted = 'FALSE'";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);

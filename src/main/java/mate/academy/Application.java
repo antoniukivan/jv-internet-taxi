@@ -71,6 +71,9 @@ public class Application {
         carService.addDriverToCar(oleg, hondaAccord);
         carService.removeDriverFromCar(john, hondaAccord);
         carService.update(hondaAccord);
+        System.out.println();
+        System.out.println(hondaAccord);
+        System.out.println();
         carService.delete(3L);
         carService.getAll().forEach(System.out::println);
         System.out.println();
