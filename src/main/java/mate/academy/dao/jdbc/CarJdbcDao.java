@@ -22,11 +22,7 @@ public class CarJdbcDao implements CarDao {
     @Override
     public Car create(Car car) {
         String insertCar = "INSERT INTO `cars` (`manufacturer_id`, `car_model`) VALUES (?, ?)";
-        String insertDrivers = "INSERT INTO `cars_drivers` (`driver_id`, `car_id`) "
-                + "VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
-                 PreparedStatement insertDriversStatement
-                        = connection.prepareStatement(insertDrivers);
                  PreparedStatement insertStatement
                         = connection.prepareStatement(insertCar, Statement.RETURN_GENERATED_KEYS)) {
             insertStatement.setLong(1, car.getManufacturer().getId());
@@ -35,11 +31,6 @@ public class CarJdbcDao implements CarDao {
             ResultSet resultSet = insertStatement.getGeneratedKeys();
             if (resultSet.next()) {
                 car.setId(resultSet.getObject(1, Long.class));
-            }
-            for (Driver driver : car.getDrivers()) {
-                insertDriversStatement.setLong(1, driver.getId());
-                insertDriversStatement.setLong(2, car.getId());
-                insertDriversStatement.executeUpdate();
             }
             return car;
         } catch (SQLException e) {
