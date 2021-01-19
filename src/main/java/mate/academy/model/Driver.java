@@ -3,11 +3,11 @@ package mate.academy.model;
 public class Driver {
     private Long id;
     private String name;
-    private String licenceNumber;
+    private String licenseNumber;
 
-    public Driver(String name, String licenceNumber) {
+    public Driver(String name, String licenseNumber) {
         this.name = name;
-        this.licenceNumber = licenceNumber;
+        this.licenseNumber = licenseNumber;
     }
 
     public Long getId() {
@@ -18,8 +18,8 @@ public class Driver {
         return name;
     }
 
-    public String getLicenceNumber() {
-        return licenceNumber;
+    public String getLicenseNumber() {
+        return licenseNumber;
     }
 
     public void setId(Long id) {
@@ -30,8 +30,8 @@ public class Driver {
         this.name = name;
     }
 
-    public void setLicenceNumber(String licenceNumber) {
-        this.licenceNumber = licenceNumber;
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Driver {
         return "Driver{"
                 + "id=" + id
                 + ", name='" + name + '\''
-                + ", licenceNumber='" + licenceNumber + '\''
+                + ", licenseNumber='" + licenseNumber + '\''
                 + '}';
     }
 }
