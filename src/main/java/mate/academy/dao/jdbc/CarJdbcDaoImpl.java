@@ -44,19 +44,21 @@ public class CarJdbcDaoImpl implements CarDao {
         String selectCar = "SELECT * FROM cars c "
                 + "JOIN manufacturers m ON c.manufacturer_id = m.id "
                 + "WHERE c.id = ? AND c.deleted = FALSE AND m.deleted = FALSE";
+        Car car = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement selectCarStatement = connection.prepareStatement(selectCar)) {
             selectCarStatement.setLong(1, id);
             ResultSet carResultSet = selectCarStatement.executeQuery();
-            Car car = null;
             if (carResultSet.next()) {
                 car = getCar(carResultSet);
-                car.setDrivers(getCarDrivers(id));
             }
-            return Optional.ofNullable(car);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get car by id " + id, e);
         }
+        if (car != null) {
+            car.setDrivers(getCarDrivers(id));
+        }
+        return Optional.ofNullable(car);
     }
 
     @Override
@@ -90,11 +92,11 @@ public class CarJdbcDaoImpl implements CarDao {
             updateStatement.setString(2, car.getModel());
             updateStatement.setLong(3, car.getId());
             updateStatement.executeUpdate();
-            deleteCar(car);
-            insertDriversToCar(car.getDrivers(), car);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update car " + car, e);
         }
+        deleteDriversFromCar(car);
+        insertDriversToCar(car.getDrivers(), car);
         return car;
     }
 
@@ -107,20 +109,19 @@ public class CarJdbcDaoImpl implements CarDao {
                 insertStatement.setLong(2, car.getId());
                 insertStatement.executeUpdate();
             }
-            insertStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete car " + car, e);
+            throw new DataProcessingException("Can't add drivers to the car " + car, e);
         }
     }
 
-    private void deleteCar(Car car) {
+    private void deleteDriversFromCar(Car car) {
         String delete = "DELETE FROM cars_drivers WHERE car_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement deleteStatement = connection.prepareStatement(delete)) {
             deleteStatement.setLong(1, car.getId());
             deleteStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete car " + car, e);
+            throw new DataProcessingException("Can't delete drivers from the car " + car, e);
         }
     }
 
@@ -151,13 +152,15 @@ public class CarJdbcDaoImpl implements CarDao {
             ResultSet carResultSet = selectCarStatement.executeQuery();
             while (carResultSet.next()) {
                 Car car = getCar(carResultSet);
-                car.setDrivers(getCarDrivers(car.getId()));
                 cars.add(car);
             }
-            return cars;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get all cars by driver id " + driverId, e);
         }
+        for (Car car : cars) {
+            car.setDrivers(getCarDrivers(car.getId()));
+        }
+        return cars;
     }
 
     private Car getCar(ResultSet resultSet) throws SQLException {
