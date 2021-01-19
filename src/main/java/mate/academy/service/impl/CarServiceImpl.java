@@ -1,4 +1,4 @@
-package mate.academy.service;
+package mate.academy.service.impl;
 
 import java.util.List;
 import mate.academy.dao.CarDao;
@@ -6,6 +6,7 @@ import mate.academy.lib.Inject;
 import mate.academy.lib.Service;
 import mate.academy.model.Car;
 import mate.academy.model.Driver;
+import mate.academy.service.CarService;
 
 @Service
 public class CarServiceImpl implements CarService {

@@ -1,10 +1,11 @@
-package mate.academy.service;
+package mate.academy.service.impl;
 
 import java.util.List;
 import mate.academy.dao.DriverDao;
 import mate.academy.lib.Inject;
 import mate.academy.lib.Service;
 import mate.academy.model.Driver;
+import mate.academy.service.DriverService;
 
 @Service
 public class DriverServiceImpl implements DriverService {
