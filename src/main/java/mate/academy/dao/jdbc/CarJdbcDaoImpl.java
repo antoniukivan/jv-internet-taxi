@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import mate.academy.dao.CarDao;
+import mate.academy.dao.GenericDao;
 import mate.academy.exception.DataProcessingException;
 import mate.academy.lib.Dao;
 import mate.academy.model.Car;
@@ -17,7 +18,7 @@ import mate.academy.model.Manufacturer;
 import mate.academy.util.ConnectionUtil;
 
 @Dao
-public class CarJdbcDaoImpl implements CarDao {
+public class CarJdbcDaoImpl implements GenericDao<Car, Long> {
     @Override
     public Car create(Car car) {
         String insertCarQuery = "INSERT INTO cars (manufacturer_id, model) VALUES (?, ?)";
