@@ -18,7 +18,7 @@ import mate.academy.model.Manufacturer;
 import mate.academy.util.ConnectionUtil;
 
 @Dao
-public class CarJdbcDaoImpl implements GenericDao<Car, Long> {
+public class CarJdbcDaoImpl implements CarDao {
     @Override
     public Car create(Car car) {
         String insertCarQuery = "INSERT INTO cars (manufacturer_id, model) VALUES (?, ?)";
