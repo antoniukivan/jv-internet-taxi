@@ -23,4 +23,14 @@
         <servlet-name>allDrivers</servlet-name>
         <url-pattern>/drivers/all</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createDriver</servlet-name>
+        <servlet-class>mate.academy.controllers.CreateDriverController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createDriver</servlet-name>
+        <url-pattern>/drivers/create</url-pattern>
+    </servlet-mapping>
 </web-app>
