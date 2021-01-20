@@ -17,12 +17,9 @@ public class Application {
         Manufacturer tesla = new Manufacturer("Tesla", "USA");
         Manufacturer toyota = new Manufacturer("Toyota", "Japan");
         Manufacturer ford = new Manufacturer("Ford", "USA");
-        manufacturerService.create(tesla);
-        manufacturerService.create(toyota);
-        manufacturerService.create(ford);
-        System.out.println(manufacturerService.get(1L));
-        System.out.println(manufacturerService.get(2L));
-        System.out.println(manufacturerService.get(3L));
+        System.out.println(manufacturerService.create(tesla));
+        System.out.println(manufacturerService.create(toyota));
+        System.out.println(manufacturerService.create(ford));
         System.out.println();
         Manufacturer honda = new Manufacturer("Honda", "Japan");
         honda.setId(3L);
