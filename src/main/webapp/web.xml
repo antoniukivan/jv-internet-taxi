@@ -33,4 +33,14 @@
         <servlet-name>createDriver</servlet-name>
         <url-pattern>/drivers/create</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createManufacturer</servlet-name>
+        <servlet-class>mate.academy.controllers.CreateManufacturerController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createManufacturer</servlet-name>
+        <url-pattern>/manufacturers/create</url-pattern>
+    </servlet-mapping>
 </web-app>
