@@ -21,7 +21,7 @@
 
     <servlet-mapping>
         <servlet-name>allDrivers</servlet-name>
-        <url-pattern>/drivers/all</url-pattern>
+        <url-pattern>/drivers/</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -82,5 +82,15 @@
     <servlet-mapping>
         <servlet-name>allManufacturers</servlet-name>
         <url-pattern>/manufacturers/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteManufacturers</servlet-name>
+        <servlet-class>mate.academy.controller.DeleteManufacturerController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteManufacturers</servlet-name>
+        <url-pattern>/manufacturers/delete</url-pattern>
     </servlet-mapping>
 </web-app>

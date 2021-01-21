@@ -6,11 +6,9 @@
 <body>
 <h1>Please, enter information about new manufacturer</h1>
 
-<h4 style="color: red">${message}</h4>
-
 <form method="post" action="${pageContext.request.contextPath}/manufacturers/create">
-    Enter manufacturer name: <input required="" type="text" name="name">
-    Enter manufacturer country: <input required="" type="text" name="country">
+    Enter manufacturer name: <input type="text" name="name" required>
+    Enter manufacturer country: <input type="text" name="country" required>
 
     <button type="submit">Create</button>
 </form>

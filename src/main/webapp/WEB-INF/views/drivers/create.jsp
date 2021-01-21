@@ -6,11 +6,9 @@
 <body>
 <h1>Please, enter information about new driver</h1>
 
-<h4 style="color: red">${message}</h4>
-
 <form method="post" action="${pageContext.request.contextPath}/drivers/create">
-    Enter driver name: <input required="" type="text" name="name">
-    Enter driver license number: <input required="" type="text" name="licenseNumber">
+    Enter driver name: <input type="text" name="name" required>
+    Enter driver license number: <input type="text" name="license_number" required>
 
     <button type="submit">Create</button>
 </form>
