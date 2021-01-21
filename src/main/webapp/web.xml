@@ -81,7 +81,7 @@
 
     <servlet-mapping>
         <servlet-name>allManufacturers</servlet-name>
-        <url-pattern>/manufacturers/all</url-pattern>
+        <url-pattern>/manufacturers/</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -92,5 +92,25 @@
     <servlet-mapping>
         <servlet-name>deleteManufacturers</servlet-name>
         <url-pattern>/manufacturers/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allCars</servlet-name>
+        <servlet-class>mate.academy.controller.GetAllCarsController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>allCars</servlet-name>
+        <url-pattern>/cars/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteCar</servlet-name>
+        <servlet-class>mate.academy.controller.DeleteCarController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteCar</servlet-name>
+        <url-pattern>/cars/delete</url-pattern>
     </servlet-mapping>
 </web-app>
