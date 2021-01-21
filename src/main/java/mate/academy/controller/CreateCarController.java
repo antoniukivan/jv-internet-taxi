@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import mate.academy.exception.DataProcessingException;
 import mate.academy.lib.Injector;
 import mate.academy.model.Car;
@@ -22,21 +23,16 @@ public class CreateCarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB.INF/views/cars/create.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/cars/create.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String model = req.getParameter("model");
-        try {
-            Long manufacturerId = Long.valueOf(req.getParameter("manufacturerId"));
-            Manufacturer manufacturer = manufacturerService.get(manufacturerId);
-            carService.create(new Car(model, manufacturer));
-        } catch (NumberFormatException | DataProcessingException e) {
-            req.setAttribute("message", "Please enter valid data");
-            req.getRequestDispatcher("/WEB.INF/views/cars/create.jsp").forward(req, resp);
-        }
+        Long manufacturerId = Long.valueOf(req.getParameter("manufacturer_id"));
+        Manufacturer manufacturer = manufacturerService.get(manufacturerId);
+        carService.create(new Car(model, manufacturer));
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }
