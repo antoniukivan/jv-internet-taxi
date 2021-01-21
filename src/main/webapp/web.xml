@@ -6,7 +6,7 @@
     
     <servlet>
         <servlet-name>index</servlet-name>
-        <servlet-class>mate.academy.controllers.IndexController</servlet-class>
+        <servlet-class>mate.academy.controller.IndexController</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -16,7 +16,7 @@
 
     <servlet>
         <servlet-name>allDrivers</servlet-name>
-        <servlet-class>mate.academy.controllers.GetAllDriversController</servlet-class>
+        <servlet-class>mate.academy.controller.GetAllDriversController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -26,7 +26,7 @@
 
     <servlet>
         <servlet-name>createDriver</servlet-name>
-        <servlet-class>mate.academy.controllers.CreateDriverController</servlet-class>
+        <servlet-class>mate.academy.controller.CreateDriverController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -36,7 +36,7 @@
 
     <servlet>
         <servlet-name>createManufacturer</servlet-name>
-        <servlet-class>mate.academy.controllers.CreateManufacturerController</servlet-class>
+        <servlet-class>mate.academy.controller.CreateManufacturerController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -46,7 +46,7 @@
 
     <servlet>
         <servlet-name>createCar</servlet-name>
-        <servlet-class>mate.academy.controllers.CreateCarController</servlet-class>
+        <servlet-class>mate.academy.controller.CreateCarController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -56,7 +56,7 @@
 
     <servlet>
         <servlet-name>addDriverToCar</servlet-name>
-        <servlet-class>mate.academy.controllers.AddDriverToCarController</servlet-class>
+        <servlet-class>mate.academy.controller.AddDriverToCarController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -66,7 +66,7 @@
 
     <servlet>
         <servlet-name>deleteDriver</servlet-name>
-        <servlet-class>mate.academy.controllers.DeleteDriverController</servlet-class>
+        <servlet-class>mate.academy.controller.DeleteDriverController</servlet-class>
     </servlet>
 
     <servlet-mapping>
