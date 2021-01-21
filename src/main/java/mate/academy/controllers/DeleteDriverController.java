@@ -1,15 +1,13 @@
 package mate.academy.controllers;
 
-import mate.academy.exception.DataProcessingException;
-import mate.academy.lib.Injector;
-import mate.academy.service.CarService;
-import mate.academy.service.DriverService;
-
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import mate.academy.lib.Injector;
+import mate.academy.service.CarService;
+import mate.academy.service.DriverService;
 
 public class DeleteDriverController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("mate.academy");
