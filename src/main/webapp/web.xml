@@ -63,4 +63,14 @@
         <servlet-name>addDriverToCar</servlet-name>
         <url-pattern>/cars/drivers/add</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteDriver</servlet-name>
+        <servlet-class>mate.academy.controllers.DeleteDriverController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteDriver</servlet-name>
+        <url-pattern>/drivers/delete</url-pattern>
+    </servlet-mapping>
 </web-app>
