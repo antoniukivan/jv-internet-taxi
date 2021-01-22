@@ -24,11 +24,15 @@ ADD CONSTRAINT `cars_manufacturers_fk`
   ON UPDATE NO ACTION;
 
 CREATE TABLE `internet_taxi`.`drivers` (
-  `id` BIGINT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(225) NOT NULL,
-  `license_number` VARCHAR(225) NOT NULL,
-  `deleted` BIT(1) NOT NULL DEFAULT false,
-PRIMARY KEY (`id`));
+    `id` bigint NOT NULL AUTO_INCREMENT,
+    `name` varchar(225) NOT NULL,
+    `license_number` varchar(225) NOT NULL,
+    `login` varchar(225) NOT NULL,
+    `password` varchar(225) NOT NULL,
+    `deleted` bit(1) NOT NULL DEFAULT b'0',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `login_UNIQUE` (`login`)
+);
 
 CREATE TABLE `internet_taxi`.`cars_drivers` (
   `driver_id` BIGINT(11) NOT NULL,
