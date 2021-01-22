@@ -2,6 +2,8 @@ package mate.academy.service;
 
 import mate.academy.model.Driver;
 
+import java.util.Optional;
+
 public interface DriverService extends GenericService<Driver, Long> {
-    Driver findByLogin(String login);
+    Optional<Driver> findByLogin(String login);
 }
