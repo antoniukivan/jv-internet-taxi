@@ -33,8 +33,8 @@ public class DriverJdbcDaoImpl implements DriverDao {
                 driver.setId(resultSet.getObject(1, Long.class));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't insert driver to the DB "
-                    + driver, e);
+            throw new DataProcessingException("The driver with this login already exist: "
+                    + driver.getLogin(), e);
         }
         return driver;
     }

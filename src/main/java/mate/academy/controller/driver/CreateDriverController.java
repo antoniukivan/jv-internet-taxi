@@ -5,6 +5,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import mate.academy.exception.DataProcessingException;
 import mate.academy.lib.Injector;
 import mate.academy.model.Driver;
 import mate.academy.service.DriverService;
@@ -27,7 +29,13 @@ public class CreateDriverController extends HttpServlet {
         String licenseNumber = req.getParameter("license_number");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        driverService.create(new Driver(name, licenseNumber, login, password));
+        try {
+            driverService.create(new Driver(name, licenseNumber, login, password));
+        } catch (DataProcessingException e) {
+            req.setAttribute("errorMsg", e.getMessage());
+            req.getRequestDispatcher("/WEB-INF/views/drivers/create.jsp").forward(req, resp);
+            return;
+        }
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }
