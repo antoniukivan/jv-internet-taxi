@@ -9,8 +9,8 @@ import mate.academy.lib.Injector;
 import mate.academy.service.DriverService;
 
 public class DeleteDriverController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy");
     public static final String DRIVER_ID = "id";
+    private static final Injector injector = Injector.getInstance("mate.academy");
     private final DriverService driverService
             = (DriverService) injector.getInstance(DriverService.class);
 

@@ -12,8 +12,8 @@ import mate.academy.model.Car;
 import mate.academy.service.CarService;
 
 public class GetMyCurrentCarsController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy");
     public static final String DRIVER_ID = "driver_id";
+    private static final Injector injector = Injector.getInstance("mate.academy");
     private final CarService carService
             = (CarService) injector.getInstance(CarService.class);
 

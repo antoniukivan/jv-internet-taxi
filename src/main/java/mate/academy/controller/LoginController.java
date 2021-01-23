@@ -6,15 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import mate.academy.exception.AuthenticationException;
 import mate.academy.lib.Injector;
 import mate.academy.model.Driver;
 import mate.academy.security.AuthenticationService;
 
 public class LoginController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy");
     public static final String DRIVER_ID = "driver_id";
+    private static final Injector injector = Injector.getInstance("mate.academy");
     private final AuthenticationService authenticationService
             = (AuthenticationService) injector.getInstance(AuthenticationService.class);
 

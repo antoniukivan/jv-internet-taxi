@@ -1,12 +1,16 @@
 package mate.academy.web.filters;
 
-import mate.academy.lib.Injector;
-import mate.academy.service.DriverService;
-
-import javax.servlet.*;
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import mate.academy.lib.Injector;
+import mate.academy.service.DriverService;
 
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driver_id";
@@ -16,7 +20,6 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
@@ -39,6 +42,5 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }
