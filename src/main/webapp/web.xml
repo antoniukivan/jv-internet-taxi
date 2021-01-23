@@ -105,6 +105,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>allDriverCars</servlet-name>
+        <servlet-class>mate.academy.controller.driver.GetMyCurrentCarsController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>allDriverCars</servlet-name>
+        <url-pattern>/driver/cars</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>deleteCar</servlet-name>
         <servlet-class>mate.academy.controller.car.DeleteCarController</servlet-class>
     </servlet>
