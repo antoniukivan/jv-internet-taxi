@@ -195,8 +195,7 @@ public class CarJdbcDaoImpl implements CarDao {
                 String name = driversResultSet.getObject("name", String.class);
                 String licenseNumber = driversResultSet.getObject("license_number", String.class);
                 String login = driversResultSet.getObject("login", String.class);
-                String password = driversResultSet.getObject("password", String.class);
-                Driver driver = new Driver(name, licenseNumber, login, password);
+                Driver driver = new Driver(name, licenseNumber, login);
                 driver.setId(driverId);
                 drivers.add(driver);
             }

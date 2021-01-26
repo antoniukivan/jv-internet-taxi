@@ -7,6 +7,12 @@ public class Driver {
     private String login;
     private String password;
 
+    public Driver(String name, String licenseNumber, String login) {
+        this.name = name;
+        this.licenseNumber = licenseNumber;
+        this.login = login;
+    }
+
     public Driver(String name, String licenseNumber, String login, String password) {
         this.name = name;
         this.licenseNumber = licenseNumber;
