@@ -18,21 +18,23 @@ import mate.academy.util.ConnectionUtil;
 public class DriverJdbcDaoImpl implements DriverDao {
     @Override
     public Driver create(Driver driver) {
-        String query = "INSERT INTO drivers (name, license_number) "
-                + "VALUES (?, ?)";
+        String query = "INSERT INTO drivers (name, license_number, login, password) "
+                + "VALUES (?, ?, ?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement preparedStatement
                          = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, driver.getName());
             preparedStatement.setString(2, driver.getLicenseNumber());
+            preparedStatement.setString(3, driver.getLogin());
+            preparedStatement.setString(4, driver.getPassword());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
                 driver.setId(resultSet.getObject(1, Long.class));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't insert driver to the DB "
-                    + driver, e);
+            throw new DataProcessingException("The driver with this login already exist: "
+                    + driver.getLogin(), e);
         }
         return driver;
     }
@@ -72,7 +74,7 @@ public class DriverJdbcDaoImpl implements DriverDao {
 
     @Override
     public Driver update(Driver driver) {
-        String query = "UPDATE drivers SET name = ?, license_number = ?"
+        String query = "UPDATE drivers SET name = ?, license_number = ?, login = ?, password = ? "
                 + "WHERE id = ? AND deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -99,11 +101,30 @@ public class DriverJdbcDaoImpl implements DriverDao {
         }
     }
 
+    @Override
+    public Optional<Driver> findByLogin(String login) {
+        String query = "SELECT * FROM drivers WHERE login = ? "
+                + "AND deleted = FALSE";
+        try (Connection connection = ConnectionUtil.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return Optional.of(getDriver(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get driver by login " + login, e);
+        }
+        return Optional.empty();
+    }
+
     private Driver getDriver(ResultSet resultSet) throws SQLException {
         Long driverId = resultSet.getObject("id", Long.class);
         String name = resultSet.getObject("name", String.class);
         String licenseNumber = resultSet.getObject("license_number", String.class);
-        Driver driver = new Driver(name, licenseNumber);
+        String login = resultSet.getObject("login", String.class);
+        String password = resultSet.getObject("password", String.class);
+        Driver driver = new Driver(name, licenseNumber, login, password);
         driver.setId(driverId);
         return driver;
     }

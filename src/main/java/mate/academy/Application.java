@@ -28,9 +28,9 @@ public class Application {
         System.out.println();
 
         DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
-        Driver vlad = new Driver("Vlad", "#22543564");
-        Driver oleg = new Driver("Oleg", "#52643574");
-        Driver alex = new Driver("Alex", "#34553578");
+        Driver vlad = new Driver("Vlad", "#22543564", "vlad", "123");
+        Driver oleg = new Driver("Oleg", "#52643574", "oleg", "1234");
+        Driver alex = new Driver("Alex", "#34553578", "alex", "12345");
         driverService.create(vlad);
         driverService.create(oleg);
         driverService.create(alex);
@@ -38,7 +38,7 @@ public class Application {
         System.out.println(driverService.get(2L));
         System.out.println(driverService.get(3L));
         System.out.println();
-        Driver john = new Driver("John", "#88551571");
+        Driver john = new Driver("John", "#88551571", "john", "123456");
         john.setId(1L);
         driverService.update(john);
         driverService.delete(3L);

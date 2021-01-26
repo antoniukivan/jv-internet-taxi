@@ -28,11 +28,15 @@
             <td>
                 <table border="1">
                     <tr>
+                        <th>Login</th>
                         <th>Name</th>
                         <th>License number</th>
                     </tr>
                     <c:forEach var="driver" items="${car.drivers}">
                         <tr>
+                            <td>
+                                <c:out value="${driver.login}"/>
+                            </td>
                             <td>
                                 <c:out value="${driver.name}"/>
                             </td>
